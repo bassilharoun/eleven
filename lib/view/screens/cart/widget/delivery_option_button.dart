@@ -35,7 +35,7 @@ class DeliveryOptionButton extends StatelessWidget {
 
               kmWiseFee ? const SizedBox() : CustomDirectionality(
                 child: Text('(${value == 'delivery' ? PriceConverter.convertPrice(Provider.of<SplashProvider>(context, listen: false)
-                    .configModel!.deliveryCharge) : getTranslated('free', context)})', style: rubikMedium),
+                    .configModel!.deliveryCharge, context) : getTranslated('free', context)})', style: rubikMedium),
               ),
 
             ],

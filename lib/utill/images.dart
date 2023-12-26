@@ -117,6 +117,7 @@ class Images {
   static const String india = 'assets/image/india.png';
   static const String spain = 'assets/image/spain.png';
   static const String arabic = 'assets/image/arabic.png';
+  static const String turkey = 'assets/image/turkey.png';
   static const String china = 'assets/image/china.png';
   static const String germany = 'assets/image/germany.png';
   static const String italy = 'assets/image/italy.png';

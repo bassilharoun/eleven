@@ -134,7 +134,7 @@ class SetMenuPageView extends StatelessWidget {
                                                 discount > 0 ? Padding(
                                                   padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeExtraSmall),
                                                   child: CustomDirectionality(child: Text(
-                                                    PriceConverter.convertPrice(startingPrice),
+                                                    PriceConverter.convertPrice(startingPrice,context),
                                                     maxLines: 1,
                                                     overflow: TextOverflow.ellipsis,
                                                     style:rubikBold.copyWith(
@@ -144,7 +144,7 @@ class SetMenuPageView extends StatelessWidget {
                                                 ) : const SizedBox(),
 
                                                 CustomDirectionality(child: Text(
-                                                  PriceConverter.convertPrice( startingPrice, discount: setMenuProvider.setMenuList![currentIndex0].discount,
+                                                  PriceConverter.convertPrice( startingPrice,context, discount: setMenuProvider.setMenuList![currentIndex0].discount,
                                                       discountType: setMenuProvider.setMenuList![currentIndex0].discountType),
                                                   style: rubikBold.copyWith(fontSize: Dimensions.fontSizeDefault, color: Theme.of(context).primaryColor, overflow: TextOverflow.ellipsis),
                                                   maxLines: 1,

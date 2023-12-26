@@ -122,15 +122,15 @@ class BonusItemView extends StatelessWidget {
         const SizedBox(height: Dimensions.paddingSizeExtraSmall),
 
         Text(walletBonusModel.minimumAddAmount != null && walletBonusModel.minimumAddAmount! > 0
-            ? '${getTranslated('add_minimum', context)} ${PriceConverter.convertPrice(walletBonusModel.minimumAddAmount)} ${getTranslated('and_enjoy_bonus', context)} '
+            ? '${getTranslated('add_minimum', context)} ${PriceConverter.convertPrice(walletBonusModel.minimumAddAmount,context)} ${getTranslated('and_enjoy_bonus', context)} '
             '${
             walletBonusModel.bonusType == 'percentage'
                 ? '${walletBonusModel.bonusAmount} %'
-                : PriceConverter.convertPrice(walletBonusModel.bonusAmount)}'
+                : PriceConverter.convertPrice(walletBonusModel.bonusAmount,context)}'
             :  '${getTranslated('add_fund_to_wallet_add_enjoy', context)} ${
             walletBonusModel.bonusType == 'percentage'
                 ? '${walletBonusModel.bonusAmount} %'
-                : PriceConverter.convertPrice(walletBonusModel.bonusAmount)} ${getTranslated('more', context)}', style: rubikRegular.copyWith(
+                : PriceConverter.convertPrice(walletBonusModel.bonusAmount,context)} ${getTranslated('more', context)}', style: rubikRegular.copyWith(
           color: Theme.of(context).primaryColor,
           fontSize: Dimensions.fontSizeSmall,
         )),

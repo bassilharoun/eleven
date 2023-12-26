@@ -120,7 +120,7 @@ class _WalletScreenReState extends State<WalletScreenRe> {
 
                                  profileProvider.isLoading ? const SizedBox() : CustomDirectionality(child: Text(
                                     widget.fromWallet ?
-                                    PriceConverter.convertPrice(profileProvider.userInfoModel?.walletBalance ?? 0) : '${profileProvider.userInfoModel?.point ?? 0}',
+                                    PriceConverter.convertPrice(profileProvider.userInfoModel?.walletBalance ?? 0,context) : '${profileProvider.userInfoModel?.point ?? 0}',
                                     style: rubikBold.copyWith(
                                       fontSize: Dimensions.fontSizeOverLarge,
                                       color: widget.fromWallet ? Colors.white : Theme.of(context).textTheme.bodyLarge?.color,

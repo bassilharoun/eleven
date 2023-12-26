@@ -53,7 +53,7 @@ class PartialPayView extends StatelessWidget {
 
             Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text(
-                PriceConverter.convertPrice(profileProvider.userInfoModel!.walletBalance!),
+                PriceConverter.convertPrice(profileProvider.userInfoModel!.walletBalance!,context),
                 style: rubikBold.copyWith(fontSize: Dimensions.fontSizeOverLarge, color: Theme.of(context).primaryColor),
               ),
               const SizedBox(height: Dimensions.paddingSizeExtraSmall),
@@ -115,7 +115,7 @@ class PartialPayView extends StatelessWidget {
           ]),
 
           isSelected ? Text(
-            '${getTranslated('remaining_wallet_balance', context)}: ${PriceConverter.convertPrice(profileProvider.userInfoModel!.walletBalance! - totalPrice)}',
+            '${getTranslated('remaining_wallet_balance', context)}: ${PriceConverter.convertPrice(profileProvider.userInfoModel!.walletBalance! - totalPrice,context)}',
             style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeSmall),
           ) : const SizedBox(),
 

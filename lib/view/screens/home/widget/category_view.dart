@@ -30,7 +30,7 @@ class CategoryView extends StatelessWidget {
               children: [
                 Expanded(
                   child: SizedBox(
-                    height: 80,
+                    height: 100,
                     child: category.categoryList != null ? category.categoryList!.isNotEmpty ? ListView.builder(
                       itemCount: category.categoryList!.length,
                       padding: const EdgeInsets.only(left: Dimensions.paddingSizeSmall),
@@ -53,6 +53,7 @@ class CategoryView extends StatelessWidget {
                                   // width: 100, height: 100, fit: BoxFit.cover,
                                 ),
                               ),
+                              SizedBox(height: 10,),
 
                               Flexible(
                                 child: Text(

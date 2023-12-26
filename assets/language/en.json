@@ -465,7 +465,7 @@
   "please_provide_transfer_amount": "Please provide transfer amount",
   "please_select_payment_method": "Please select payment method",
   "add_fund_to_wallet": "Add Fund to Wallet",
-  "faster_and_secure_way_to_pay_bill": "Faster & secure way to pay bill",
+  "faster_and_secure_way_to_pay_bill": "Soon",
   "by_using_the_add_fund_option": "By using the add fund option, you can add money to your wallet.",
   "valid_till": "Valid till",
   "add_fund_to_wallet_add_enjoy": "Add fund to wallet and enjoy",
@@ -539,5 +539,6 @@
   "registration_successful": "Registration successful",
   "enter_your_payment_note": "Enter your payment note",
   "please_submit_a_valid_phone_number": "Please submit a valid phone number.",
-  "enter_valid_order_id": "Enter valid order ID"
+  "enter_valid_order_id": "Enter valid order ID",
+  "eg": "Eg"
 }

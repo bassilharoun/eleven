@@ -140,12 +140,12 @@ class ProductWidgetWeb extends StatelessWidget {
                                     priceDiscount! > 0 ? Padding(
                                         padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeExtraSmall),
                                         child: CustomDirectionality(child: Text(
-                                          PriceConverter.convertPrice(startingPrice),
+                                          PriceConverter.convertPrice(startingPrice,context),
                                           style: rubikBold.copyWith(fontSize: Dimensions.fontSizeExtraSmall, decoration: TextDecoration.lineThrough),
                                         ))) : const SizedBox(),
 
                                     CustomDirectionality(child: Text(
-                                      PriceConverter.convertPrice(startingPrice, discount: product.discount, discountType: product.discountType),
+                                      PriceConverter.convertPrice(startingPrice,context, discount: product.discount, discountType: product.discountType),
                                       style: rubikBold.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).primaryColor),
                                     ))
                                   ],

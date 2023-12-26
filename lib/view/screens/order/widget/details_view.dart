@@ -207,14 +207,14 @@ class DetailsView extends StatelessWidget {
                             children: [
                               Flexible(child: Row(children: [
                                 CustomDirectionality(child: Text(
-                                  PriceConverter.convertPrice( order.orderDetails![index].price! - order.orderDetails![index].discountOnProduct!),
+                                  PriceConverter.convertPrice( order.orderDetails![index].price! - order.orderDetails![index].discountOnProduct!,context),
                                   style: rubikBold,
                                 )),
                                 const SizedBox(width: 5),
 
                                 order.orderDetails![index].discountOnProduct! > 0 ? Expanded(
                                   child: CustomDirectionality(child: Text(
-                                    PriceConverter.convertPrice(order.orderDetails![index].price),
+                                    PriceConverter.convertPrice(order.orderDetails![index].price,context),
                                     style: rubikBold.copyWith(
                                       decoration: TextDecoration.lineThrough,
                                       fontSize: Dimensions.fontSizeSmall,
@@ -264,7 +264,7 @@ class DetailsView extends StatelessWidget {
                               Text(addOns[i].name!, style: rubikRegular),
                               const SizedBox(width: 2),
 
-                              CustomDirectionality(child: Text(PriceConverter.convertPrice(addOns[i].price), style: rubikMedium)),
+                              CustomDirectionality(child: Text(PriceConverter.convertPrice(addOns[i].price,context), style: rubikMedium)),
                               const SizedBox(width: 2),
 
                               Text('(${order.orderDetails![index].addOnQtys![i]})', style: rubikRegular),

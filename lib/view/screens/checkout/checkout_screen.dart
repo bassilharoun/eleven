@@ -569,7 +569,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeLarge, vertical: Dimensions.paddingSizeSmall),
                       child: ItemView(
                         title: getTranslated('total_amount', context)!,
-                        subTitle: PriceConverter.convertPrice(widget.amount! + deliveryCharge!),
+                        subTitle: PriceConverter.convertPrice(widget.amount! + deliveryCharge!,context),
                         style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeExtraLarge, color: Theme.of(context).primaryColor),
                       ),
                     ),

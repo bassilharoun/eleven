@@ -114,12 +114,12 @@ class ProductWidget extends StatelessWidget {
 
                     CustomDirectionality(
                       child: Text(
-                        PriceConverter.convertPrice(startingPrice, discount: product.discount, discountType: product.discountType),
+                        PriceConverter.convertPrice(startingPrice,context, discount: product.discount, discountType: product.discountType),
                         style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeSmall),
                       ),
                     ),
                     product.price! > discountedPrice! ? CustomDirectionality(
-                      child: Text(PriceConverter.convertPrice(startingPrice), style: rubikMedium.copyWith(
+                      child: Text(PriceConverter.convertPrice(startingPrice, context), style: rubikMedium.copyWith(
                         color: Theme.of(context).hintColor.withOpacity(0.7),
                         decoration: TextDecoration.lineThrough,
                         fontSize: Dimensions.fontSizeExtraSmall,

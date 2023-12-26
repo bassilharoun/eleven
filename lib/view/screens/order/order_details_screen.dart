@@ -254,19 +254,19 @@ class _OrderAmountViewState extends State<OrderAmountView> {
 
       ItemView(
         title: getTranslated('items_price', context)!,
-        subTitle: PriceConverter.convertPrice(widget.itemsPrice),
+        subTitle: PriceConverter.convertPrice(widget.itemsPrice,context),
       ),
       const SizedBox(height: 10),
 
       ItemView(
         title: getTranslated('tax', context)!,
-        subTitle: '(+) ${PriceConverter.convertPrice( widget.tax)}',
+        subTitle: '(+) ${PriceConverter.convertPrice( widget.tax,context)}',
       ),
       const SizedBox(height: 10),
 
       ItemView(
         title: getTranslated('addons', context)!,
-        subTitle: '(+) ${PriceConverter.convertPrice(widget.addOns)}',
+        subTitle: '(+) ${PriceConverter.convertPrice(widget.addOns,context)}',
       ),
 
       const Padding(
@@ -276,14 +276,14 @@ class _OrderAmountViewState extends State<OrderAmountView> {
 
       ItemView(
         title: getTranslated('subtotal', context)!,
-        subTitle: PriceConverter.convertPrice(widget.subTotal),
+        subTitle: PriceConverter.convertPrice(widget.subTotal,context),
         style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeLarge),
       ),
       const SizedBox(height: 10),
 
       ItemView(
         title: getTranslated('discount', context)!,
-        subTitle: '(-) ${PriceConverter.convertPrice(widget.discount)}',
+        subTitle: '(-) ${PriceConverter.convertPrice(widget.discount,context)}',
       ),
       const SizedBox(height: 10),
 
@@ -293,20 +293,20 @@ class _OrderAmountViewState extends State<OrderAmountView> {
         padding: const EdgeInsets.symmetric(vertical: 10),
         child: ItemView(
           title: getTranslated('extra_discount', context)!,
-          subTitle: '(-) ${PriceConverter.convertPrice(widget.extraDiscount)}',
+          subTitle: '(-) ${PriceConverter.convertPrice(widget.extraDiscount,context)}',
           style: poppinsRegular.copyWith(fontSize: Dimensions.fontSizeLarge),
         ),
       ),
 
       ItemView(
         title: getTranslated('coupon_discount', context)!,
-        subTitle: '(-) ${PriceConverter.convertPrice(orderProvider.trackModel!.couponDiscountAmount)}',
+        subTitle: '(-) ${PriceConverter.convertPrice(orderProvider.trackModel!.couponDiscountAmount,context)}',
       ),
       const SizedBox(height: 10),
 
       ItemView(
         title: getTranslated('delivery_fee', context)!,
-        subTitle: '(+) ${PriceConverter.convertPrice(widget.deliveryCharge)}',
+        subTitle: '(+) ${PriceConverter.convertPrice(widget.deliveryCharge,context)}',
       ),
 
 
@@ -317,7 +317,7 @@ class _OrderAmountViewState extends State<OrderAmountView> {
 
       ItemView(
         title: getTranslated('total_amount', context)!,
-        subTitle: PriceConverter.convertPrice(widget.total),
+        subTitle: PriceConverter.convertPrice(widget.total,context),
         style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeExtraLarge, color: Theme.of(context).primaryColor),
       ),
 
@@ -343,7 +343,7 @@ class _OrderAmountViewState extends State<OrderAmountView> {
                   style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).textTheme.bodyLarge!.color),
                   overflow: TextOverflow.ellipsis,),
 
-                Text( PriceConverter.convertPrice(payment.paidAmount! > 0 ? payment.paidAmount : payment.dueAmount),
+                Text( PriceConverter.convertPrice(payment.paidAmount! > 0 ? payment.paidAmount : payment.dueAmount,context),
                   style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeDefault, color: Theme.of(context).textTheme.bodyLarge!.color),),
               ],
               ),

@@ -163,7 +163,7 @@ class _CartScreenState extends State<CartScreen> {
                                                 if(coupon.discount! < 1) {
                                                   coupon.applyCoupon(_couponController.text, total).then((discount) {
                                                     if (discount! > 0) {
-                                                      showCustomSnackBar('You got ${PriceConverter.convertPrice(discount)} discount', isError: false);
+                                                      showCustomSnackBar('You got ${PriceConverter.convertPrice(discount, context)} discount', isError: false);
                                                     } else {
                                                       showCustomSnackBar(getTranslated('invalid_code_or', context), isError: true);
                                                     }
@@ -230,37 +230,37 @@ class _CartScreenState extends State<CartScreen> {
                                   // Total
                                   ItemView(
                                     title: getTranslated('items_price', context)!,
-                                    subTitle: PriceConverter.convertPrice(itemPrice),
+                                    subTitle: PriceConverter.convertPrice(itemPrice, context),
                                   ),
                                   const SizedBox(height: 10),
 
                                   ItemView(
                                     title: getTranslated('tax', context)!,
-                                    subTitle: '(+) ${PriceConverter.convertPrice(tax)}',
+                                    subTitle: '(+) ${PriceConverter.convertPrice(tax, context)}',
                                   ),
                                   const SizedBox(height: 10),
 
                                   ItemView(
                                     title: getTranslated('addons', context)!,
-                                    subTitle: '(+) ${PriceConverter.convertPrice(addOns)}',
+                                    subTitle: '(+) ${PriceConverter.convertPrice(addOns, context)}',
                                   ),
                                   const SizedBox(height: 10),
 
                                   ItemView(
                                     title: getTranslated('discount', context)!,
-                                    subTitle: '(-) ${PriceConverter.convertPrice(discount)}',
+                                    subTitle: '(-) ${PriceConverter.convertPrice(discount,context)}',
                                   ),
                                   const SizedBox(height: 10),
 
                                   ItemView(
                                     title: getTranslated('coupon_discount', context)!,
-                                    subTitle: '(-) ${PriceConverter.convertPrice(Provider.of<CouponProvider>(context).discount)}',
+                                    subTitle: '(-) ${PriceConverter.convertPrice(Provider.of<CouponProvider>(context).discount,context)}',
                                   ),
                                   const SizedBox(height: 10),
 
                                   kmWiseCharge ? const SizedBox() : ItemView(
                                     title: getTranslated('delivery_fee', context)!,
-                                    subTitle: '(+) ${PriceConverter.convertPrice(deliveryCharge)}',
+                                    subTitle: '(+) ${PriceConverter.convertPrice(deliveryCharge,context)}',
                                   ),
 
                                   const Padding(
@@ -270,7 +270,7 @@ class _CartScreenState extends State<CartScreen> {
 
                                   ItemView(
                                     title: getTranslated(kmWiseCharge ? 'subtotal' : 'total_amount', context)!,
-                                    subTitle: PriceConverter.convertPrice(total),
+                                    subTitle: PriceConverter.convertPrice(total,context),
                                     style: rubikMedium.copyWith(
                                       fontSize: Dimensions.fontSizeExtraLarge, color: Theme.of(context).primaryColor,
                                     ),
@@ -330,7 +330,7 @@ class CheckOutButtonView extends StatelessWidget {
       child: CustomButton(btnTxt: getTranslated('continue_checkout', context), onTap: () {
         if(orderAmount < Provider.of<SplashProvider>(context, listen: false).configModel!.minimumOrderValue!) {
           showCustomSnackBar('Minimum order amount is ${PriceConverter.convertPrice(Provider.of<SplashProvider>(context, listen: false).configModel!
-              .minimumOrderValue)}, you have ${PriceConverter.convertPrice(orderAmount)} in your cart, please add more item.');
+              .minimumOrderValue,context)}, you have ${PriceConverter.convertPrice(orderAmount,context)} in your cart, please add more item.');
         } else {
            RouterHelper.getCheckoutRoute(
             totalWithoutDeliveryFee, 'cart', Provider.of<OrderProvider>(context, listen: false).orderType,

@@ -131,7 +131,7 @@ class _QrProductWidgetState extends State<QrProductWidget> {
                                   ),
                                 ),
 
-                                PriceStackTag(value: PriceConverter.convertPrice(double.parse('$productPrice')),)
+                                PriceStackTag(value: PriceConverter.convertPrice(double.parse('$productPrice'),context),)
                               ],
                             ),
 

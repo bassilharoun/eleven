@@ -56,7 +56,7 @@ class DeliveryFeeDialog extends StatelessWidget {
                 const SizedBox(height: 10),
 
                 CustomDirectionality(child: Text(
-                  PriceConverter.convertPrice(deliveryCharge),
+                  PriceConverter.convertPrice(deliveryCharge, context),
                   style: rubikBold.copyWith(fontSize: Dimensions.fontSizeExtraLarge),
                 )),
 
@@ -64,13 +64,13 @@ class DeliveryFeeDialog extends StatelessWidget {
 
                 ItemView(
                   title: getTranslated('subtotal', context)!,
-                  subTitle: PriceConverter.convertPrice(amount),
+                  subTitle: PriceConverter.convertPrice(amount,context),
                 ),
                 const SizedBox(height: 10),
 
                 ItemView(
                   title: getTranslated('delivery_fee', context)!,
-                  subTitle:  '(+) ${PriceConverter.convertPrice(deliveryCharge)}',
+                  subTitle:  '(+) ${PriceConverter.convertPrice(deliveryCharge, context)}',
                 ),
 
                 const Padding(
@@ -80,7 +80,7 @@ class DeliveryFeeDialog extends StatelessWidget {
 
                 ItemView(
                   title: getTranslated('total_amount', context)!,
-                  subTitle:   PriceConverter.convertPrice(amount! + deliveryCharge),
+                  subTitle:   PriceConverter.convertPrice(amount! + deliveryCharge,context),
                   style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeExtraLarge, color: Theme.of(context).primaryColor),
                 ),
 

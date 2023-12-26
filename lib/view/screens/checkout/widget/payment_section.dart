@@ -123,7 +123,7 @@ class SelectedPaymentView extends StatelessWidget {
              )),
 
              Text(
-               PriceConverter.convertPrice(total), textDirection: TextDirection.ltr,
+               PriceConverter.convertPrice(total,context), textDirection: TextDirection.ltr,
                style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).primaryColor),
              )
 

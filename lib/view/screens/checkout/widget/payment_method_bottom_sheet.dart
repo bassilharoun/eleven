@@ -198,18 +198,7 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
                   ]),
                   const SizedBox(height: Dimensions.paddingSizeLarge),
 
-                  Expanded(child: PaymentMethodView(
-                    paymentList: paymentList,
-                    onTap: (index){
-                      if(notHideOffline &&  paymentList[index].type == 'offline'){
-                        orderProvider.changePaymentMethod(digitalMethod: paymentList[index]);
-                      }else if(!notHideDigital){
-                        showCustomSnackBar('${getTranslated('you_can_not_use', context)} ${getTranslated('digital_payment', context)} ${getTranslated('in_partial_payment', context)}');
-                      }else{
-                        orderProvider.changePaymentMethod(digitalMethod: paymentList[index]);
-                      }
-                    }
-                  )),
+
                   const SizedBox(height: Dimensions.paddingSizeSmall),
 
 

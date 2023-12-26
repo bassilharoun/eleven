@@ -61,20 +61,22 @@ class _CategoryScreenState extends State<CategoryScreen> with TickerProviderStat
             slivers: [
               SliverAppBar(
                 backgroundColor: Theme.of(context).cardColor,
-                expandedHeight: 200,
+                expandedHeight: 250,
                 toolbarHeight: 50 + MediaQuery.of(context).padding.top,
                 pinned: true,
                 floating: false,
                 leading: ResponsiveHelper.isDesktop(context)?const SizedBox():SizedBox(width:ResponsiveHelper.isDesktop(context) ? 1170: MediaQuery.of(context).size.width,
-                    child: IconButton(icon: const Icon(Icons.chevron_left, color: Colors.white), onPressed: () => context.pop())),
+                    child: Container(
+                      color: Colors.white.withOpacity(0.5),
+                        child: IconButton(icon: const Icon(Icons.chevron_left, color: Colors.white), onPressed: () => context.pop()))),
                 flexibleSpace: Container(color:Theme.of(context).canvasColor,
                   margin: ResponsiveHelper.isDesktop(context)? EdgeInsets.symmetric(horizontal: realSpaceNeeded) : const EdgeInsets.symmetric(horizontal: 0),width: ResponsiveHelper.isDesktop(context) ? 1170: MediaQuery.of(context).size.width,
                   child: FlexibleSpaceBar(
-                    title: Text(widget.categoryName ?? '', style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).textTheme.bodyLarge?.color)),
+
                     titlePadding: EdgeInsets.only(
                       bottom: 54 + (MediaQuery.of(context).padding.top/2),
-                      left: 50,
-                      right: 50,
+                      left: 180,
+                      right: 20,
                     ),
                     background: Container(height: 50,width : ResponsiveHelper.isDesktop(context) ? 1170: MediaQuery.of(context).size.width,
                       margin: const EdgeInsets.only(bottom: 50),

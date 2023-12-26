@@ -82,7 +82,7 @@ class WalletHistory extends StatelessWidget {
           const SizedBox(width: Dimensions.paddingSizeExtraSmall),
 
           CustomDirectionality(child: Text(
-            '${isDebit ? '-' : '+' } ${PriceConverter.convertPrice(isDebit ? transaction!.debit : transaction!.credit)}',
+            '${isDebit ? '-' : '+' } ${PriceConverter.convertPrice(isDebit ? transaction!.debit : transaction!.credit,context)}',
             style: rubikMedium.copyWith(
               fontSize: Dimensions.fontSizeDefault,
               color: Theme.of(context).textTheme.bodyLarge!.color,

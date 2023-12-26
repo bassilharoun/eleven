@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_restaurant/localization/language_constrants.dart';
 import 'package:flutter_restaurant/main.dart';
 import 'package:flutter_restaurant/provider/splash_provider.dart';
 import 'package:provider/provider.dart';
 
 class PriceConverter {
-  static String convertPrice(double? price, {double? discount, String? discountType}) {
+  static String convertPrice(double? price, context, {double? discount, String? discountType}) {
     final configModel = Provider.of<SplashProvider>(Get.context!, listen: false).configModel!;
     if(discount != null && discountType != null){
       if(discountType == 'amount') {
@@ -14,7 +15,7 @@ class PriceConverter {
       }
     }
     return configModel.currencySymbolPosition == 'left'
-        ? '${configModel.currencySymbol}' '${price!.toStringAsFixed(configModel.decimalPointSettings!).replaceAllMapped(
+        ? '${getTranslated("eg", context)}' '${price!.toStringAsFixed(configModel.decimalPointSettings!).replaceAllMapped(
       RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},',
     )}'
         : '${price!.toStringAsFixed(configModel.decimalPointSettings!).replaceAllMapped(

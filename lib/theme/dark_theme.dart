@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_restaurant/utill/dimensions.dart';
 
 ThemeData dark = ThemeData(
-  fontFamily: 'Rubik',
-  primaryColor: const Color(0xFFba4f41),
+  fontFamily: 'Tajawal',
+  primaryColor: const Color(0xFFfdb215),
   secondaryHeaderColor: const Color(0xff04B200),
   brightness: Brightness.dark,
   cardColor: const Color(0xFF252525),

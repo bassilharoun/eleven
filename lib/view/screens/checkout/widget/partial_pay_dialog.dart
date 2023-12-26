@@ -65,7 +65,7 @@ class PartialPayDialog extends StatelessWidget {
           const SizedBox(height: Dimensions.paddingSizeSmall),
 
           Text(
-            PriceConverter.convertPrice(profileProvider.userInfoModel?.walletBalance),
+            PriceConverter.convertPrice(profileProvider.userInfoModel?.walletBalance, context),
             style: rubikBold.copyWith(fontSize: Dimensions.fontSizeOverLarge, color: Theme.of(context).primaryColor),
           ),
 
@@ -73,7 +73,7 @@ class PartialPayDialog extends StatelessWidget {
             padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
             child: Text(
               isPartialPay ? getTranslated('can_be_paid_via_wallet', context)!
-                  : '${getTranslated('remaining_wallet_balance', context)}: ${PriceConverter.convertPrice(profileProvider.userInfoModel!.walletBalance! - totalPrice)}',
+                  : '${getTranslated('remaining_wallet_balance', context)}: ${PriceConverter.convertPrice(profileProvider.userInfoModel!.walletBalance! - totalPrice,context)}',
               style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).hintColor), textAlign: TextAlign.center,
             ),
           ),

@@ -51,7 +51,7 @@ class WalletHeaderView extends StatelessWidget {
 
                   profileProvider.isLoading ? const SizedBox() : Row(children: [
                     CustomDirectionality(child: Text(
-                     PriceConverter.convertPrice(profileProvider.userInfoModel?.walletBalance ?? 0),
+                     PriceConverter.convertPrice(profileProvider.userInfoModel?.walletBalance ?? 0,context),
                         style: rubikBold.copyWith(
                           fontSize: Dimensions.fontSizeOverLarge,
                           color: Colors.white,

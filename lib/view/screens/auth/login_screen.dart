@@ -110,7 +110,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   Images.logo,
                                   height: MediaQuery.of(context).size.height / 4.5,
                                   fit: BoxFit.scaleDown,
-                                  matchTextDirection: true,
+                                  matchTextDirection: false,
                                 ),
                               ),
                             ),

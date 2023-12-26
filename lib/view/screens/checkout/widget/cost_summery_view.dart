@@ -37,7 +37,7 @@ class CostSummeryView extends StatelessWidget {
 
           ItemView(
             title: getTranslated('subtotal', context)!,
-            subTitle: PriceConverter.convertPrice(subtotal),
+            subTitle: PriceConverter.convertPrice(subtotal,context),
             style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeLarge),
           ),
           const SizedBox(height: 10),
@@ -45,7 +45,7 @@ class CostSummeryView extends StatelessWidget {
          if(!takeAway) ItemView(
             title: getTranslated('delivery_fee', context)!,
             subTitle: (!takeAway || orderProvider.distance != -1) ?
-            '(+) ${PriceConverter.convertPrice( takeAway ? 0 : deliveryCharge)}'
+            '(+) ${PriceConverter.convertPrice( takeAway ? 0 : deliveryCharge,context)}'
                 : getTranslated('not_found', context)!,
           ),
 
@@ -56,7 +56,7 @@ class CostSummeryView extends StatelessWidget {
 
          if(ResponsiveHelper.isDesktop(context)) ItemView(
             title: getTranslated('total_amount', context)!,
-            subTitle: PriceConverter.convertPrice(subtotal! + deliveryCharge!),
+            subTitle: PriceConverter.convertPrice(subtotal! + deliveryCharge!,context),
             style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeExtraLarge, color: Theme.of(context).primaryColor),
           ),
         ]),

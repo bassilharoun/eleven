@@ -95,13 +95,13 @@ flutter:
     - web/assets/
 
   fonts:
-    - family: Rubik
+    - family: Tajawal
       fonts:
-        - asset: assets/fonts/Rubik-Regular.ttf
+        - asset: assets/fonts/Tajawal-Regular.ttf
           weight: 400
-        - asset: assets/fonts/Rubik-Medium.ttf
+        - asset: assets/fonts/Tajawal-Medium.ttf
           weight: 500
-        - asset: assets/fonts/Rubik-Bold.ttf
+        - asset: assets/fonts/Tajawal-Bold.ttf
           weight: 700
 
     - family: Poppins

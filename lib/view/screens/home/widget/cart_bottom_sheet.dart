@@ -230,7 +230,7 @@ class _CartBottomSheetState extends State<CartBottomSheet> {
 
                                                 CustomDirectionality(child: Text(
                                                   variationList[index].variationValues![i].optionPrice! > 0
-                                                      ? '+${PriceConverter.convertPrice(variationList[index].variationValues![i].optionPrice)}'
+                                                      ? '+${PriceConverter.convertPrice(variationList[index].variationValues![i].optionPrice,context)}'
                                                       : 'free',
                                                   maxLines: 1, overflow: TextOverflow.ellipsis,
                                                   style: productProvider.selectedVariations[index][i]! ? rubikMedium.copyWith(fontSize: Dimensions.fontSizeExtraSmall)
@@ -259,7 +259,7 @@ class _CartBottomSheetState extends State<CartBottomSheet> {
                                 const SizedBox(width: Dimensions.paddingSizeExtraSmall),
 
                                 CustomDirectionality(
-                                  child: Text(PriceConverter.convertPrice( priceWithAddonsVariation),
+                                  child: Text(PriceConverter.convertPrice( priceWithAddonsVariation,context),
                                       style: rubikBold.copyWith(
                                         color: Theme.of(context).primaryColor,
                                         fontSize: Dimensions.fontSizeLarge,
@@ -269,7 +269,7 @@ class _CartBottomSheetState extends State<CartBottomSheet> {
 
                                 (priceWithAddonsVariationWithoutDiscount > priceWithAddonsVariation)
                                     ? CustomDirectionality(child: Text(
-                                  '(${PriceConverter.convertPrice( priceWithAddonsVariationWithoutDiscount)})',
+                                  '(${PriceConverter.convertPrice( priceWithAddonsVariationWithoutDiscount,context)})',
                                   style: rubikMedium.copyWith(
                                     color: Theme.of(context).disabledColor,
                                     fontSize: Dimensions.fontSizeSmall,
@@ -360,7 +360,7 @@ class _CartBottomSheetState extends State<CartBottomSheet> {
                       const SizedBox(height: 5),
 
                       CustomDirectionality(child: Text(
-                        PriceConverter.convertPrice(widget.product!.addOns![index].price),
+                        PriceConverter.convertPrice(widget.product!.addOns![index].price,context),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: rubikRegular.copyWith(
@@ -571,7 +571,7 @@ class _CartBottomSheetState extends State<CartBottomSheet> {
             Expanded(
               child: Row(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min,  children: [
                 FittedBox(child: CustomDirectionality(child: Text(
-                  PriceConverter.convertPrice(price, discount: widget.product!.discount, discountType: widget.product!.discountType),
+                  PriceConverter.convertPrice(price,context, discount: widget.product!.discount, discountType: widget.product!.discountType),
                   style: rubikMedium.copyWith(
                     fontSize: Dimensions.fontSizeLarge,
                     overflow: TextOverflow.ellipsis,
@@ -586,7 +586,7 @@ class _CartBottomSheetState extends State<CartBottomSheet> {
                   child: Padding(
                     padding: const EdgeInsets.only(bottom: 5),
                       child: CustomDirectionality(child: Text(
-                        PriceConverter.convertPrice(price),
+                        PriceConverter.convertPrice(price,context),
                         style: rubikMedium.copyWith(color: Theme.of(context).hintColor.withOpacity(0.7), decoration: TextDecoration.lineThrough, overflow: TextOverflow.ellipsis),
                         maxLines: 1,
                       ))),

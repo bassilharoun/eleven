@@ -137,7 +137,7 @@ class SetMenuView extends StatelessWidget {
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Flexible(child: CustomDirectionality(child: Text(
-                                          PriceConverter.convertPrice(startingPrice, discount: setMenu.setMenuList![index].discount,
+                                          PriceConverter.convertPrice(startingPrice,context, discount: setMenu.setMenuList![index].discount,
                                               discountType: setMenu.setMenuList![index].discountType),
                                           style: rubikBold.copyWith(fontSize: Dimensions.fontSizeSmall),
                                         ))),
@@ -146,7 +146,7 @@ class SetMenuView extends StatelessWidget {
                                     ),
                                     discount > 0 ? Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                                       Flexible(child: CustomDirectionality(child: Text(
-                                        PriceConverter.convertPrice( startingPrice),
+                                        PriceConverter.convertPrice( startingPrice,context),
                                         style: rubikBold.copyWith(
                                           fontSize: Dimensions.fontSizeExtraSmall,
                                           color: Theme.of(context).hintColor.withOpacity(0.7),

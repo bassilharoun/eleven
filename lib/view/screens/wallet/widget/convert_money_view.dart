@@ -38,7 +38,7 @@ class _ConvertMoneyViewState extends State<ConvertMoneyView> {
       getTranslated('only_earning_point_can_converted', context),
 
       '${Provider.of<SplashProvider>(context, listen: false).configModel!.loyaltyPointExchangeRate
-      } ${getTranslated('point', context)} ${getTranslated('remain', context)} ${PriceConverter.convertPrice(1)}',
+      } ${getTranslated('point', context)} ${getTranslated('remain', context)} ${PriceConverter.convertPrice(1,context)}',
       getTranslated('once_you_convert_the_point', context),
       getTranslated('point_can_use_for_get_bonus_money', context),
 

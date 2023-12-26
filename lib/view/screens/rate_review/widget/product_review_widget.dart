@@ -71,7 +71,7 @@ class ProductReviewWidget extends StatelessWidget {
                                       const SizedBox(height: 10),
 
                                       CustomDirectionality(child: Text(
-                                        PriceConverter.convertPrice(orderDetailsList[index].productDetails!.price),
+                                        PriceConverter.convertPrice(orderDetailsList[index].productDetails!.price,context),
                                         style: rubikBold,
                                       )),
                                     ],

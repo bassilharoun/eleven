@@ -3,10 +3,10 @@ import 'package:flutter_restaurant/helper/app_mode.dart';
 import 'package:flutter_restaurant/utill/images.dart';
 
 class AppConstants {
-  static const String appName = 'eFood';
+  static const String appName = 'Eleven Shawerma';
   static const String appVersion = '10.2';
   static const AppMode appMode = AppMode.release;
-  static const String baseUrl =  'https://efood-admin.6amtech.com';
+  static const String baseUrl =  'https://mobile.elevenshawerma.com';
   static const String categoryUri = '/api/v1/categories';
   static const String bannerUri = '/api/v1/banners';
   static const String latestProductUri = '/api/v1/products/latest';
@@ -101,9 +101,9 @@ class AppConstants {
   static List<LanguageModel> languages = [
     LanguageModel(imageUrl: Images.unitedKingdom, languageName: 'English', countryCode: 'US', languageCode: 'en'),
     LanguageModel(imageUrl: Images.arabic, languageName: 'Arabic', countryCode: 'SA', languageCode: 'ar'),
-    LanguageModel(imageUrl: Images.bd, languageName: 'Bengali', countryCode: 'BD', languageCode: 'bn'),
-    LanguageModel(imageUrl: Images.india, languageName: 'Hindi', countryCode: 'IN', languageCode: 'hi'),
-    LanguageModel(imageUrl: Images.spain, languageName: 'Spanish', countryCode: 'ES', languageCode: 'es'),
+    LanguageModel(imageUrl: Images.turkey, languageName: 'Türkçe', countryCode: 'TR', languageCode: 'tr'),
+    // LanguageModel(imageUrl: Images.india, languageName: 'Hindi', countryCode: 'IN', languageCode: 'hi'),
+    // LanguageModel(imageUrl: Images.spain, languageName: 'Spanish', countryCode: 'ES', languageCode: 'es'),
   ];
 
   static const int balanceInputLen = 10;

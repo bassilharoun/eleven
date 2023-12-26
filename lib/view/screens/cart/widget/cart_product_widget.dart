@@ -43,7 +43,7 @@ class CartProductWidget extends StatelessWidget {
           for(int i=0; i<cart!.variations![index].length; i++) {
             if(cart!.variations![index][i]!) {
               variationText += '${variationText.endsWith('(') ? '' : ', '}${variationList[index].variationValues![i].level} - ${
-                  PriceConverter.convertPrice(variationList[index].variationValues![i].optionPrice)
+                  PriceConverter.convertPrice(variationList[index].variationValues![i].optionPrice,context)
               }';
             }
           }
@@ -143,14 +143,14 @@ class CartProductWidget extends StatelessWidget {
                     const SizedBox(height: 5),
                     Row(children: [
                       Flexible(child: CustomDirectionality(child: Text(
-                        PriceConverter.convertPrice(cart!.discountedPrice),
+                        PriceConverter.convertPrice(cart!.discountedPrice, context),
                         style: rubikBold,
                       ))),
                       const SizedBox(width: Dimensions.paddingSizeExtraSmall),
 
                       cart!.discountAmount! > 0 ? Flexible(
                         child: CustomDirectionality(
-                          child: Text(PriceConverter.convertPrice((cart!.product!.price!)), style: rubikBold.copyWith(
+                          child: Text(PriceConverter.convertPrice((cart!.product!.price!), context), style: rubikBold.copyWith(
                             color: Theme.of(context).hintColor.withOpacity(0.7),
                             fontSize: Dimensions.fontSizeSmall,
                             decoration: TextDecoration.lineThrough,
@@ -255,7 +255,7 @@ class CartProductWidget extends StatelessWidget {
                         ),
                         Text(addOns[index].name!, style: rubikRegular),
                         const SizedBox(width: 2),
-                        CustomDirectionality(child: Text(PriceConverter.convertPrice(addOns[index].price), style: rubikMedium)),
+                        CustomDirectionality(child: Text(PriceConverter.convertPrice(addOns[index].price, context), style: rubikMedium)),
                         const SizedBox(width: 2),
                         Text('(${cart!.addOnIds![index].quantity})', style: rubikRegular),
                       ]),

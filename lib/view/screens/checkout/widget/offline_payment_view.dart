@@ -142,7 +142,7 @@ class _OfflinePaymentViewState extends State<OfflinePaymentView> {
               const SizedBox(height: Dimensions.paddingSizeSmall),
 
               Text(
-                '${getTranslated('amount', context)} : ${PriceConverter.convertPrice(widget.totalAmount)}',
+                '${getTranslated('amount', context)} : ${PriceConverter.convertPrice(widget.totalAmount, context)}',
                 style: rubikBold.copyWith(fontSize: Dimensions.fontSizeLarge),
               ),
               const SizedBox(height: Dimensions.paddingSizeExtraLarge),
