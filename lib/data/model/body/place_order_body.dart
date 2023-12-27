@@ -7,7 +7,7 @@ class PlaceOrderBody {
   double? _orderAmount;
   String? _orderType;
   int? _deliveryAddressId;
-  String? _paymentMethod;
+  String? _paymentMethod = 'cash_on_delivery';
   String? _orderNote;
   String? _couponCode;
   String? _deliveryTime;
@@ -48,7 +48,7 @@ class PlaceOrderBody {
     _orderAmount = orderAmount;
     _orderType = orderType;
     _deliveryAddressId = deliveryAddressId;
-    _paymentMethod = paymentMethod;
+    _paymentMethod = 'cash_on_delivery';
     _orderNote = orderNote;
     _couponCode = couponCode;
     _deliveryTime = deliveryTime;

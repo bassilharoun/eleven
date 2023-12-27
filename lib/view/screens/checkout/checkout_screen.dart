@@ -78,6 +78,11 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     final SplashProvider splashProvider = Provider.of<SplashProvider>(context, listen: false);
     final ProfileProvider profileProvider = Provider.of<ProfileProvider>(context, listen: false);
     final CartProvider cartProvider = Provider.of<CartProvider>(context, listen: false);
+    orderProvider.savePaymentMethod(index: 0, method: PaymentMethod(
+      getWayTitle: getTranslated('cash_on_delivery', Get.context!),
+      getWay: 'cash_on_delivery',
+      type: 'cash_on_delivery',
+    ));
 
     if(cartProvider.cartList.isEmpty) {
       RouterHelper.getDashboardRoute('cart');
@@ -112,9 +117,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         profileProvider.getUserInfo(false, isUpdate: false);
       }
 
-      orderProvider.initializeTimeSlot(context).then((value) {
-        orderProvider.sortTime();
-      });
+      // orderProvider.initializeTimeSlot(context).then((value) {
+      //   orderProvider.sortTime();
+      // });
       Provider.of<LocationProvider>(context, listen: false).initAddressList();
       _cartList = [];
       widget.fromCart ? _cartList.addAll(Provider.of<CartProvider>(context, listen: false).cartList) : _cartList.addAll(widget.cartList!);
@@ -384,62 +389,62 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                           ]) : const SizedBox(),
 
                           // Time Slot
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeSmall),
-                            child: Text(getTranslated('preference_time', context)!, style: rubikMedium),
-                          ),
-                          const SizedBox(height: Dimensions.paddingSizeExtraSmall),
+                          // Padding(
+                          //   padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeSmall),
+                          //   child: Text(getTranslated('preference_time', context)!, style: rubikMedium),
+                          // ),
+                          // const SizedBox(height: Dimensions.paddingSizeExtraSmall),
+                          //
+                          // SizedBox(
+                          //   height: 50,
+                          //   child: ListView.builder(
+                          //     scrollDirection: Axis.horizontal,
+                          //     shrinkWrap: true,
+                          //     physics: const BouncingScrollPhysics(),
+                          //     padding: const EdgeInsets.only(left: Dimensions.paddingSizeExtraSmall),
+                          //     itemCount: 2,
+                          //     itemBuilder: (context, index) {
+                          //       return Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+                          //         Radio(
+                          //           activeColor: Theme.of(context).primaryColor,
+                          //           value: index,
+                          //           groupValue: orderProvider.selectDateSlot,
+                          //           onChanged: (value)=> orderProvider.updateDateSlot(index),
+                          //         ),
+                          //         const SizedBox(width: Dimensions.paddingSizeExtraSmall),
+                          //
+                          //         Text(index == 0 ? getTranslated('today', context)! : getTranslated('tomorrow', context)!, style: rubikRegular.copyWith(
+                          //           color: index == orderProvider.selectDateSlot ? Theme.of(context).primaryColor : Theme.of(context).textTheme.bodyLarge?.color,
+                          //         )),
+                          //         const SizedBox(width: Dimensions.paddingSizeExtraSmall),
+                          //       ]);
+                          //     },
+                          //   ),
+                          // ),
+                          // const SizedBox(height: Dimensions.paddingSizeSmall),
 
-                          SizedBox(
-                            height: 50,
-                            child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              shrinkWrap: true,
-                              physics: const BouncingScrollPhysics(),
-                              padding: const EdgeInsets.only(left: Dimensions.paddingSizeExtraSmall),
-                              itemCount: 2,
-                              itemBuilder: (context, index) {
-                                return Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-                                  Radio(
-                                    activeColor: Theme.of(context).primaryColor,
-                                    value: index,
-                                    groupValue: orderProvider.selectDateSlot,
-                                    onChanged: (value)=> orderProvider.updateDateSlot(index),
-                                  ),
-                                  const SizedBox(width: Dimensions.paddingSizeExtraSmall),
-
-                                  Text(index == 0 ? getTranslated('today', context)! : getTranslated('tomorrow', context)!, style: rubikRegular.copyWith(
-                                    color: index == orderProvider.selectDateSlot ? Theme.of(context).primaryColor : Theme.of(context).textTheme.bodyLarge?.color,
-                                  )),
-                                  const SizedBox(width: Dimensions.paddingSizeExtraSmall),
-                                ]);
-                              },
-                            ),
-                          ),
-                          const SizedBox(height: Dimensions.paddingSizeSmall),
-
-                          SizedBox(
-                            height: 40,
-                            child: orderProvider.timeSlots != null ? orderProvider.timeSlots!.isNotEmpty ? ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              shrinkWrap: true,
-                              physics: const BouncingScrollPhysics(),
-                              padding: const EdgeInsets.only(left: Dimensions.paddingSizeSmall),
-                              itemCount: orderProvider.timeSlots!.length,
-                              itemBuilder: (context, index) {
-                                return SlotWidget(
-                                  title: (
-                                      index == 0 && orderProvider.selectDateSlot == 0  && Provider.of<SplashProvider>(context, listen: false).isRestaurantOpenNow(context))
-                                      ? getTranslated('now', context)
-                                      : '${DateConverter.dateToTimeOnly(orderProvider.timeSlots![index].startTime!, context)} '
-                                      '- ${DateConverter.dateToTimeOnly(orderProvider.timeSlots![index].endTime!, context)}',
-                                  isSelected: orderProvider.selectTimeSlot == index,
-                                  onTap: () => orderProvider.updateTimeSlot(index),
-                                );
-                              },
-                            ) : Center(child: Text(getTranslated('no_slot_available', context)!)) : const Center(child: CircularProgressIndicator()),
-                          ),
-                          const SizedBox(height: Dimensions.paddingSizeLarge),
+                          // SizedBox(
+                          //   height: 40,
+                          //   child: orderProvider.timeSlots != null ? orderProvider.timeSlots!.isNotEmpty ? ListView.builder(
+                          //     scrollDirection: Axis.horizontal,
+                          //     shrinkWrap: true,
+                          //     physics: const BouncingScrollPhysics(),
+                          //     padding: const EdgeInsets.only(left: Dimensions.paddingSizeSmall),
+                          //     itemCount: orderProvider.timeSlots!.length,
+                          //     itemBuilder: (context, index) {
+                          //       return SlotWidget(
+                          //         title: (
+                          //             index == 0 && orderProvider.selectDateSlot == 0  && Provider.of<SplashProvider>(context, listen: false).isRestaurantOpenNow(context))
+                          //             ? getTranslated('now', context)
+                          //             : '${DateConverter.dateToTimeOnly(orderProvider.timeSlots![index].startTime!, context)} '
+                          //             '- ${DateConverter.dateToTimeOnly(orderProvider.timeSlots![index].endTime!, context)}',
+                          //         isSelected: orderProvider.selectTimeSlot == index,
+                          //         onTap: () => orderProvider.updateTimeSlot(index),
+                          //       );
+                          //     },
+                          //   ) : Center(child: Text(getTranslated('no_slot_available', context)!)) : const Center(child: CircularProgressIndicator()),
+                          // ),
+                          // const SizedBox(height: Dimensions.paddingSizeLarge),
 
                           PaymentSection(total: (widget.amount ?? 0) + (deliveryCharge ?? 0)),
                           if(ResponsiveHelper.isDesktop(context)) const SizedBox(height: Dimensions.paddingSizeDefault),

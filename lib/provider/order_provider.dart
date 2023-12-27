@@ -30,7 +30,7 @@ class OrderProvider extends ChangeNotifier {
   List<OrderModel>? _runningOrderList;
   List<OrderModel>? _historyOrderList;
   List<OrderDetailsModel>? _orderDetails;
-  int? _paymentMethodIndex;
+  int? _paymentMethodIndex = 0;
   OrderModel? _trackModel;
   ResponseModel? _responseModel;
   int _addressIndex = -1;
@@ -39,14 +39,16 @@ class OrderProvider extends ChangeNotifier {
   DeliveryManModel? _deliveryManModel;
   String? _orderType = 'delivery';
   int _branchIndex = 0;
-  List<TimeSlotModel>? _timeSlots;
-  List<TimeSlotModel>? _allTimeSlots;
   int _selectDateSlot = 0;
   int _selectTimeSlot = 0;
   double _distance = -1;
   bool _isRestaurantCloseShow = true;
   PaymentMethod? _paymentMethod;
-  PaymentMethod? _selectedPaymentMethod;
+  PaymentMethod? _selectedPaymentMethod = PaymentMethod(
+    getWayTitle: getTranslated('cash_on_delivery', Get.context!),
+    getWay: 'cash_on_delivery',
+    type: 'cash_on_delivery',
+  );
   double? _partialAmount;
   OfflinePaymentModel? _selectedOfflineMethod;
   List<Map<String, String>>? _selectedOfflineValue;
@@ -71,8 +73,6 @@ class OrderProvider extends ChangeNotifier {
   DeliveryManModel? get deliveryManModel => _deliveryManModel;
   String? get orderType => _orderType;
   int get branchIndex => _branchIndex;
-  List<TimeSlotModel>? get timeSlots => _timeSlots;
-  List<TimeSlotModel>? get allTimeSlots => _allTimeSlots;
   int get selectDateSlot => _selectDateSlot;
   int get selectTimeSlot => _selectTimeSlot;
   double get distance => _distance;
@@ -98,6 +98,7 @@ class OrderProvider extends ChangeNotifier {
   }
 
   Future<void> getOrderList(BuildContext context) async {
+    setPaymentIndex(0);
     ApiResponse apiResponse = await orderRepo!.getOrderList();
     if (apiResponse.response != null && apiResponse.response!.statusCode == 200) {
       _runningOrderList = [];
@@ -162,7 +163,7 @@ class OrderProvider extends ChangeNotifier {
   }
 
   void setPaymentIndex(int? index, {bool isUpdate = true}) {
-    _paymentMethodIndex = index;
+    _paymentMethodIndex = 0;
     _paymentMethod = null;
     if(isUpdate){
       notifyListeners();
@@ -343,106 +344,104 @@ class OrderProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> initializeTimeSlot(BuildContext context) async {
-   final scheduleTime =  Provider.of<SplashProvider>(context, listen: false).configModel!.restaurantScheduleTime!;
-   int? duration = Provider.of<SplashProvider>(context, listen: false).configModel!.scheduleOrderSlotDuration;
-    _timeSlots = [];
-    _allTimeSlots = [];
-    _selectDateSlot = 0;
-    int minutes = 0;
-    DateTime now = DateTime.now();
-    for(int index = 0; index < scheduleTime.length; index++) {
-      DateTime openTime = DateTime(
-        now.year,
-        now.month,
-        now.day,
-        DateConverter.convertStringTimeToDate(scheduleTime[index].openingTime!).hour,
-        DateConverter.convertStringTimeToDate(scheduleTime[index].openingTime!).minute,
-      );
-
-      DateTime closeTime = DateTime(
-        now.year,
-        now.month,
-        now.day,
-        DateConverter.convertStringTimeToDate(scheduleTime[index].closingTime!).hour,
-        DateConverter.convertStringTimeToDate(scheduleTime[index].closingTime!).minute,
-      );
-
-      if(closeTime.difference(openTime).isNegative) {
-        minutes = openTime.difference(closeTime).inMinutes;
-      }else {
-        minutes = closeTime.difference(openTime).inMinutes;
-      }
-      if(duration! > 0 && minutes > duration) {
-        DateTime time = openTime;
-        for(;;) {
-          if(time.isBefore(closeTime)) {
-            DateTime start = time;
-            DateTime end = start.add(Duration(minutes: duration));
-            if(end.isAfter(closeTime)) {
-              end = closeTime;
-            }
-            _timeSlots!.add(TimeSlotModel(day: int.tryParse(scheduleTime[index].day!), startTime: start, endTime: end));
-            _allTimeSlots!.add(TimeSlotModel(day: int.tryParse(scheduleTime[index].day!), startTime: start, endTime: end));
-            time = time.add(Duration(minutes: duration));
-          }else {
-            break;
-          }
-        }
-      }else {
-        _timeSlots!.add(TimeSlotModel(day: int.tryParse(scheduleTime[index].day!), startTime: openTime, endTime: closeTime));
-        _allTimeSlots!.add(TimeSlotModel(day: int.tryParse(scheduleTime[index].day!), startTime: openTime, endTime: closeTime));
-      }
-    }
-    validateSlot(_allTimeSlots!, 0, notify: false);
-  }
-  void sortTime() {
-    _timeSlots!.sort((a, b){
-      return a.startTime!.compareTo(b.startTime!);
-    });
-
-    _allTimeSlots!.sort((a, b){
-      return a.startTime!.compareTo(b.startTime!);
-    });
-  }
-
-  void updateTimeSlot(int index) {
-    _selectTimeSlot = index;
-    notifyListeners();
-  }
-
-  void updateDateSlot(int index) {
-    _selectDateSlot = index;
-    if(_allTimeSlots != null) {
-      validateSlot(_allTimeSlots!, index);
-    }
-    notifyListeners();
-  }
-
-
-
-  void validateSlot(List<TimeSlotModel> slots, int dateIndex, {bool notify = true}) {
-    _timeSlots = [];
-    int day = 0;
-    if(dateIndex == 0) {
-      day = DateTime.now().weekday;
-    }else {
-      day = DateTime.now().add(const Duration(days: 1)).weekday;
-    }
-    if(day == 7) {
-      day = 0;
-    }
-    for (var slot in slots) {
-      if (day == slot.day && (dateIndex == 0 ? slot.endTime!.isAfter(DateTime.now()) : true)) {
-        _timeSlots!.add(slot);
-      }
-    }
-
-
-    if(notify) {
-      notifyListeners();
-    }
-  }
+  // Future<void> initializeTimeSlot(BuildContext context) async {
+  //  final scheduleTime =  Provider.of<SplashProvider>(context, listen: false).configModel!.restaurantScheduleTime!;
+  //  int? duration = Provider.of<SplashProvider>(context, listen: false).configModel!.scheduleOrderSlotDuration;
+  //   _selectDateSlot = 0;
+  //   int minutes = 0;
+  //   DateTime now = DateTime.now();
+  //   for(int index = 0; index < scheduleTime.length; index++) {
+  //     DateTime openTime = DateTime(
+  //       now.year,
+  //       now.month,
+  //       now.day,
+  //       DateConverter.convertStringTimeToDate(scheduleTime[index].openingTime!).hour,
+  //       DateConverter.convertStringTimeToDate(scheduleTime[index].openingTime!).minute,
+  //     );
+  //
+  //     DateTime closeTime = DateTime(
+  //       now.year,
+  //       now.month,
+  //       now.day,
+  //       DateConverter.convertStringTimeToDate(scheduleTime[index].closingTime!).hour,
+  //       DateConverter.convertStringTimeToDate(scheduleTime[index].closingTime!).minute,
+  //     );
+  //
+  //     if(closeTime.difference(openTime).isNegative) {
+  //       minutes = openTime.difference(closeTime).inMinutes;
+  //     }else {
+  //       minutes = closeTime.difference(openTime).inMinutes;
+  //     }
+  //     if(duration! > 0 && minutes > duration) {
+  //       DateTime time = openTime;
+  //       for(;;) {
+  //         if(time.isBefore(closeTime)) {
+  //           DateTime start = time;
+  //           DateTime end = start.add(Duration(minutes: duration));
+  //           if(end.isAfter(closeTime)) {
+  //             end = closeTime;
+  //           }
+  //           _timeSlots!.add(TimeSlotModel(day: int.tryParse(scheduleTime[index].day!), startTime: start, endTime: end));
+  //           _allTimeSlots!.add(TimeSlotModel(day: int.tryParse(scheduleTime[index].day!), startTime: start, endTime: end));
+  //           time = time.add(Duration(minutes: duration));
+  //         }else {
+  //           break;
+  //         }
+  //       }
+  //     }else {
+  //       _timeSlots!.add(TimeSlotModel(day: int.tryParse(scheduleTime[index].day!), startTime: openTime, endTime: closeTime));
+  //       _allTimeSlots!.add(TimeSlotModel(day: int.tryParse(scheduleTime[index].day!), startTime: openTime, endTime: closeTime));
+  //     }
+  //   }
+  //   validateSlot(_allTimeSlots!, 0, notify: false);
+  // }
+  // void sortTime() {
+  //   _timeSlots!.sort((a, b){
+  //     return a.startTime!.compareTo(b.startTime!);
+  //   });
+  //
+  //   _allTimeSlots!.sort((a, b){
+  //     return a.startTime!.compareTo(b.startTime!);
+  //   });
+  // }
+  //
+  // void updateTimeSlot(int index) {
+  //   _selectTimeSlot = index;
+  //   notifyListeners();
+  // }
+  //
+  // void updateDateSlot(int index) {
+  //   _selectDateSlot = index;
+  //   if(_allTimeSlots != null) {
+  //     validateSlot(_allTimeSlots!, index);
+  //   }
+  //   notifyListeners();
+  // }
+  //
+  //
+  //
+  // void validateSlot(List<TimeSlotModel> slots, int dateIndex, {bool notify = true}) {
+  //   _timeSlots = [];
+  //   int day = 0;
+  //   if(dateIndex == 0) {
+  //     day = DateTime.now().weekday;
+  //   }else {
+  //     day = DateTime.now().add(const Duration(days: 1)).weekday;
+  //   }
+  //   if(day == 7) {
+  //     day = 0;
+  //   }
+  //   for (var slot in slots) {
+  //     if (day == slot.day && (dateIndex == 0 ? slot.endTime!.isAfter(DateTime.now()) : true)) {
+  //       _timeSlots!.add(slot);
+  //     }
+  //   }
+  //
+  //
+  //   if(notify) {
+  //     notifyListeners();
+  //   }
+  // }
 
 
   Future<bool> getDistanceInMeter(LatLng originLatLng, LatLng destinationLatLng) async {

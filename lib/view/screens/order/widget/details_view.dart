@@ -27,29 +27,38 @@ class DetailsView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
 
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,crossAxisAlignment: CrossAxisAlignment.start,
+              Column(
+                children: [
+                  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,crossAxisAlignment: CrossAxisAlignment.start,
 
-                  children: [
-                    Text('${getTranslated('order_id', context)}:', style: rubikRegular),
-                    const SizedBox(width: Dimensions.paddingSizeExtraSmall),
+                      children: [
+                        Text('${getTranslated('order_id', context)}:', style: rubikRegular),
+                        const SizedBox(width: Dimensions.paddingSizeExtraSmall),
 
-                    Text(order.trackModel!.id.toString(), style: rubikMedium),
-                    const SizedBox(width: Dimensions.paddingSizeExtraSmall),
+                        Text(order.trackModel!.id.toString(), style: rubikMedium),
+                        const SizedBox(width: Dimensions.paddingSizeExtraSmall),
 
-                    const Expanded(child: SizedBox()),
+                        const Expanded(child: SizedBox()),
 
-                    const Icon(Icons.watch_later, size: 17),
-                    const SizedBox(width: Dimensions.paddingSizeExtraSmall),
 
-                    order.trackModel!.deliveryTime != null ? Text(
-                      DateConverter.deliveryDateAndTimeToDate(order.trackModel!.deliveryDate!, order.trackModel!.deliveryTime!, context),
-                      style: rubikRegular,
-                    ) : Text(
-                      DateConverter.isoStringToLocalDateOnly(order.trackModel!.createdAt!),
-                      style: rubikRegular,
-                    ),
 
-                  ]),
+                      ]),
+                  Row(
+                    children: [
+                      const Icon(Icons.watch_later, size: 17),
+                      const SizedBox(width: Dimensions.paddingSizeExtraSmall),
+
+                      order.trackModel!.deliveryTime != null ? Text(
+                        DateConverter.deliveryDateAndTimeToDate(order.trackModel!.deliveryDate!, order.trackModel!.deliveryTime!, context),
+                        style: rubikRegular,
+                      ) : Text(
+                        DateConverter.isoStringToLocalDateOnly(order.trackModel!.createdAt!),
+                        style: rubikRegular,
+                      ),
+                    ],
+                  )
+                ],
+              ),
               const SizedBox(height: Dimensions.paddingSizeLarge),
 
               Row(children: [

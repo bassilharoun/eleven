@@ -79,8 +79,8 @@ class AppConstants {
   // Shared Key
   static const String theme = 'theme';
   static const String token = 'token';
-  static const String languageCode = 'language_code';
-  static const String countryCode = 'country_code';
+  static const String languageCode = 'ar';
+  static const String countryCode = 'SA';
   static const String cartList = 'cart_list';
   static const String userPassword = 'user_password';
   static const String userAddress = 'user_address';

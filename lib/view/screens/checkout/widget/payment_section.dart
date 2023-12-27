@@ -70,7 +70,8 @@ class PaymentSection extends StatelessWidget {
              ),
            ),
 
-           if(showPayment) SelectedPaymentView(total: orderProvider.partialAmount ??  total),
+           if(showPayment)
+             SelectedPaymentView(total: orderProvider.partialAmount ??  total),
 
           ]),
       );

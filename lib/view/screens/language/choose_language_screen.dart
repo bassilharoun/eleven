@@ -42,6 +42,9 @@ class ChooseLanguageScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  IconButton(icon: Icon(Icons.arrow_back_ios),onPressed: (){
+                    Navigator.pop(context);
+                  },),
                   const SizedBox(height: 30),
                   Center(
                     child: Container(

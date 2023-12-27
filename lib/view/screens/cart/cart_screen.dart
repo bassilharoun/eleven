@@ -328,6 +328,7 @@ class CheckOutButtonView extends StatelessWidget {
       width: 1170,
       padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
       child: CustomButton(btnTxt: getTranslated('continue_checkout', context), onTap: () {
+
         if(orderAmount < Provider.of<SplashProvider>(context, listen: false).configModel!.minimumOrderValue!) {
           showCustomSnackBar('Minimum order amount is ${PriceConverter.convertPrice(Provider.of<SplashProvider>(context, listen: false).configModel!
               .minimumOrderValue,context)}, you have ${PriceConverter.convertPrice(orderAmount,context)} in your cart, please add more item.');

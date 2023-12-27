@@ -153,7 +153,7 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
                   SizedBox(height: notHideCod ? Dimensions.paddingSizeLarge : 0),
 
                   Row(children: [
-                    configModel.cashOnDelivery! && notHideCod ? Expanded(
+                     Expanded(
                       child: PaymentButtonNew(
                         icon: Images.cart,
                         title: getTranslated('cash_on_delivery', context)!,
@@ -162,7 +162,7 @@ class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
                          orderProvider.setPaymentIndex(0);
                         },
                       ),
-                    ) : const SizedBox(),
+                    ),
                     SizedBox(width: configModel.cashOnDelivery! ? Dimensions.paddingSizeLarge : 0),
 
                     configModel.walletStatus! && authProvider.isLoggedIn() && (orderProvider.partialAmount == null) && !isPartialPayment ? Expanded(

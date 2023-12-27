@@ -20,7 +20,7 @@ class PriceConverter {
     )}'
         : '${price!.toStringAsFixed(configModel.decimalPointSettings!).replaceAllMapped(
       RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},',
-    )}' ' ${configModel.currencySymbol}';
+    )}' ' ${getTranslated("eg", context)}';
   }
 
   static double? convertWithDiscount(double? price, double? discount, String? discountType) {

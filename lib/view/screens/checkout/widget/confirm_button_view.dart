@@ -63,14 +63,15 @@ class ConfirmButtonView extends StatelessWidget {
                       bool isAvailable = true;
                       DateTime scheduleStartDate = DateTime.now();
                       DateTime scheduleEndDate = DateTime.now();
-                      if(orderProvider.timeSlots == null || orderProvider.timeSlots!.isEmpty) {
-                        isAvailable = false;
-                      }else {
+                      // if(orderProvider.timeSlots == null || orderProvider.timeSlots!.isEmpty) {
+                      //   isAvailable = false;
+                      // }
+                      // else {
                         DateTime date = orderProvider.selectDateSlot == 0 ? DateTime.now() : DateTime.now().add(const Duration(days: 1));
-                        DateTime startTime = orderProvider.timeSlots![orderProvider.selectTimeSlot].startTime!;
-                        DateTime endTime = orderProvider.timeSlots![orderProvider.selectTimeSlot].endTime!;
-                        scheduleStartDate = DateTime(date.year, date.month, date.day, startTime.hour, startTime.minute+1);
-                        scheduleEndDate = DateTime(date.year, date.month, date.day, endTime.hour, endTime.minute+1);
+                        // DateTime startTime = orderProvider.timeSlots![orderProvider.selectTimeSlot].startTime!;
+                        // DateTime endTime = orderProvider.timeSlots![orderProvider.selectTimeSlot].endTime!;
+                        // scheduleStartDate = DateTime(date.year, date.month, date.day, startTime.hour, startTime.minute+1);
+                        // scheduleEndDate = DateTime(date.year, date.month, date.day, endTime.hour, endTime.minute+1);
                         for (CartModel? cart in cartList) {
                           if (!DateConverter.isAvailable(cart!.product!.availableTimeStarts!, cart.product!.availableTimeEnds!, context, time: scheduleStartDate,)
                               && !DateConverter.isAvailable(cart.product!.availableTimeStarts!, cart.product!.availableTimeEnds!, context, time: scheduleEndDate)
@@ -79,7 +80,7 @@ class ConfirmButtonView extends StatelessWidget {
                             break;
                           }
                         }
-                      }
+                      // }
 
                       if(orderAmount < configModel.minimumOrderValue!) {
                         showCustomSnackBar('Minimum order amount is ${configModel.minimumOrderValue}');
@@ -88,9 +89,11 @@ class ConfirmButtonView extends StatelessWidget {
 
                       } else if(!takeAway && (locationProvider.addressList == null || locationProvider.addressList!.isEmpty || orderProvider.addressIndex < 0)) {
                         showCustomSnackBar(getTranslated('select_an_address', context));
-                      }else if (orderProvider.timeSlots == null || orderProvider.timeSlots!.isEmpty) {
-                        showCustomSnackBar(getTranslated('select_a_time', context));
-                      }else if (!isAvailable) {
+                      }
+                      // else if (orderProvider.timeSlots == null || orderProvider.timeSlots!.isEmpty) {
+                      //   showCustomSnackBar(getTranslated('select_a_time', context));
+                      // }
+                      else if (!isAvailable) {
                         showCustomSnackBar(getTranslated('one_or_more_products_are_not_available_for_this_selected_time', context));
                       }else if (!takeAway && kmWiseCharge && orderProvider.distance == -1) {
                         showCustomSnackBar(getTranslated('delivery_fee_not_set_yet', context));

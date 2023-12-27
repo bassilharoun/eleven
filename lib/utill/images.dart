@@ -123,9 +123,9 @@ class Images {
   static const String italy = 'assets/image/italy.png';
   static const String japan = 'assets/image/japan.png';
   static const String korea = 'assets/image/korean.png';
-  static const String onBoardingOne = 'assets/image/onboarding_one.png';
-  static const String onBoardingTwo = 'assets/image/onboarding_two.png';
-  static const String onBoardingThree = 'assets/image/onboarding_three.png';
+  static const String onBoardingOne = 'assets/image/on1.png';
+  static const String onBoardingTwo = 'assets/image/on3.png';
+  static const String onBoardingThree = 'assets/image/on2.png';
   static const String unitedKingdom = 'assets/image/united_kindom.png';
   static const String done = 'assets/icon/done.png';
   static const String playStore = 'assets/image/play_store.png';
